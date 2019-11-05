@@ -63,6 +63,7 @@ docker run --rm -v /tmp/out:/tmp/ ximoneighteen/fortvalidator --mode standalone 
 
 ### FORT Validator using a SLURM file
 
+Where `/tmp/mydata/my.slurm` is your SLURM file:
 ```
-docker run --rm -v /tmp/my.slurm:/tmp/ ximoneighteen/fortvalidator --slurm /tmp/my.slurm
+docker run --rm -v /tmp/mydata/:/tmp/ ximoneighteen/fortvalidator --slurm /tmp/my.slurm
 ```
