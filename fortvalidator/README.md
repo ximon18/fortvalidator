@@ -26,7 +26,7 @@ For ease of use the Docker container comes presupplied with the TAL files made a
 
 ## Examples
 
-The examples below show how to use the Docker image to run the FORT Validator per the FORT Validator [Basic Usage](https://nicmx.github.io/FORT-validator/run.html) instructions. These examples assume that you have the necessary TAL files in your `/tmp/tals` directory.
+The examples below show how to use the Docker image to run the FORT Validator per the FORT Validator [Basic Usage](https://nicmx.github.io/FORT-validator/run.html) instructions.
 
 ### FORT Validator as an RTR server
 
