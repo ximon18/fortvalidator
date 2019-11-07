@@ -7,8 +7,8 @@ ADD https://github.com/krallin/tini/releases/download/v${TINI_VER}/tini /tini
 RUN chmod +x /tini
 
 # Install supporting tools
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
-    apt-get install -y --no-install-recommends \
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         # wget needs ca-certificates in order to trust GitHub.com
         ca-certificates \
         # rsyslog is needed when FORT Validator runs in non-standalone mode
@@ -35,7 +35,7 @@ RUN wget https://github.com/NICMx/FORT-validator/releases/download/v${FORT_VER}/
     apt-get clean
 
 # Create required directories
-RUN mkdir -p /tals /repo
+RUN mkdir /tals /repo
 
 # Download the freely available TAL files (excludes ARIN).
 # See: https://github.com/NICMx/FORT-validator/blob/master/tal/README.md
@@ -48,7 +48,5 @@ ADD https://raw.githubusercontent.com/NICMx/FORT-validator/master/tal/ripe.tal /
 COPY entrypoint.sh /opt/
 RUN chmod +x /opt/entrypoint.sh
 
-# Run FORT Validaor via Tini
-# Specify mandatory options whose values are determined within the container
-# and not by the user of the container.
+# Run FORT Validator via Tini to ensure signals to PID 1 are respected
 ENTRYPOINT ["/tini", "-g", "--", "/opt/entrypoint.sh"]
