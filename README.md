@@ -6,11 +6,20 @@ I created these images to reduce deployment time in the cloud to experiment with
 
 Each definition is accompanied by a deployed copy of the image on Docker Hub:
 
-| RP Tool | Dockerfile Repo | Docker Hub Image |
-| ------- | ---------- | ------------ |
-| [FORT Validator](https://fortproject.net/validator) | [fortvalidator](fortvalidator) | [ximoneighteen/fortvalidator](https://hub.docker.com/r/ximoneighteen/fortvalidator) |
-| [Rcynic](https://github.com/dragonresearch/rpki.net/tree/master/rp/rcynic) | [rcynic](rcynic) | [ximoneighteen/rcynic](https://hub.docker.com/r/ximoneighteen/rcynic) |
-| [rpki-client](https://medium.com/@jobsnijders/a-proposal-for-a-new-rpki-validator-openbsd-rpki-client-1-15b74e7a3f65) | [rpki-client](rpki-client) | [ximoneighteen/rpkiclient](https://hub.docker.com/r/ximoneighteen/rpkiclient) |
+| RP Tool | Dockerfile Repo | Docker Hub Image | Image Vendor |
+| ------- | --------------- | ---------------- | ------------ |
+| [FORT Validator](https://fortproject.net/validator) | [in this repo](fortvalidator) | [ximoneighteen/fortvalidator](https://hub.docker.com/r/ximoneighteen/fortvalidator) | Me |
+| [Rcynic](https://github.com/dragonresearch/rpki.net/tree/master/rp/rcynic) | [in this repo](rcynic) | [ximoneighteen/rcynic](https://hub.docker.com/r/ximoneighteen/rcynic) | Me |
+| [rpki-client](https://medium.com/@jobsnijders/a-proposal-for-a-new-rpki-validator-openbsd-rpki-client-1-15b74e7a3f65) | [in this repo](rpki-client) | [ximoneighteen/rpkiclient](https://hub.docker.com/r/ximoneighteen/rpkiclient) | Me |
+
+Additionally, the table below lists other official RP images that I am aware of:
+
+| RP Tool | Dockerfile Repo | Docker Hub Image | Image Vendor |
+| ------- | --------------- | ---------------- | ------------ |
+| [OctoRPKI](https://blog.cloudflare.com/cloudflares-rpki-toolkit/) | [CloudFlare @ GitHub](https://github.com/cloudflare/cfrpki#octorpki) | [cloudflare/octorpki](https://hub.docker.com/r/cloudflare/octorpki) | CloudFlare |
+| [RPKI Validator 3](https://www.ripe.net/manage-ips-and-asns/resource-management/certification/tools-and-resources) | [RIPE NCC @ GitHub](https://github.com/RIPE-NCC/rpki-validator) | [ripencc/rpki-validator-3-docker](https://hub.docker.com/r/ripencc/rpki-validator-3-docker) | RIPE NCC |
+
+A more complete list of RPKI Relying Party Software is maintained by NLnet Labs on Read the Docs [here](https://rpki.readthedocs.io/en/latest/tools.html).
 
 ## RPKI? Relying Party?
 
