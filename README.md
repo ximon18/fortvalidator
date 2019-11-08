@@ -8,9 +8,9 @@ Each definition is accompanied by a deployed copy of the image on Docker Hub:
 
 | RP Tool | Dockerfile Repo | Docker Hub Image | Image Vendor |
 | ------- | --------------- | ---------------- | ------------ |
-| [FORT Validator](https://fortproject.net/validator) | [in this repo](fortvalidator) | [ximoneighteen/fortvalidator](https://hub.docker.com/r/ximoneighteen/fortvalidator) | Me |
-| [Rcynic](https://github.com/dragonresearch/rpki.net/tree/master/rp/rcynic) | [in this repo](rcynic) | [ximoneighteen/rcynic](https://hub.docker.com/r/ximoneighteen/rcynic) | Me |
-| [rpki-client](https://medium.com/@jobsnijders/a-proposal-for-a-new-rpki-validator-openbsd-rpki-client-1-15b74e7a3f65) | [in this repo](rpki-client) | [ximoneighteen/rpkiclient](https://hub.docker.com/r/ximoneighteen/rpkiclient) | Me |
+| [FORT Validator](https://fortproject.net/validator) | [`fortvalidator/`](fortvalidator) | [ximoneighteen/fortvalidator](https://hub.docker.com/r/ximoneighteen/fortvalidator) | Me |
+| [Rcynic](https://github.com/dragonresearch/rpki.net/tree/master/rp/rcynic) | [`rcynic/`](rcynic) | [ximoneighteen/rcynic](https://hub.docker.com/r/ximoneighteen/rcynic) | Me |
+| [rpki-client](https://medium.com/@jobsnijders/a-proposal-for-a-new-rpki-validator-openbsd-rpki-client-1-15b74e7a3f65) | [`rpki-client/`](rpki-client) | [ximoneighteen/rpkiclient](https://hub.docker.com/r/ximoneighteen/rpkiclient) | Me |
 
 Additionally, the table below lists other official RP images that I am aware of:
 
