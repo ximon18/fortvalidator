@@ -1,6 +1,6 @@
 FROM debian AS builder
 ARG TINI_VER=0.18.0
-ARG FORT_VER=1.1.1
+ARG FORT_VER=1.1.3
 
 # Use tini to ensure fort can be CTRL-C stopped when running as a Docker container
 ADD https://github.com/krallin/tini/releases/download/v${TINI_VER}/tini /tini
