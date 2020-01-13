@@ -1,5 +1,5 @@
 FROM ubuntu:18.04
-ARG RPKICLIENT_VER=archive/VERSION_0_2_0.tar.gz
+ARG RPKICLIENT_VER=archive/VERSION_0_3_0.tar.gz
 ARG TINI_VER=0.18.0
 
 # Use tini to ensure fort can be CTRL-C stopped when running as a Docker container
@@ -20,13 +20,17 @@ RUN apt-get update && \
 # Install rpki-client
 WORKDIR /tmp/build/rpki-client
 RUN curl -fsSLo- https://github.com/kristapsdz/rpki-client/${RPKICLIENT_VER} | tar zx --strip-components 1 && \
-    sed -i -e 's|^#\([A-Z]\+\)|\1|' Makefile && \
     mkdir /usr/local/lib/eopenssl && \
     cd /usr/local/lib/eopenssl && \
     ln -s /usr/lib/x86_64-linux-gnu/libssl.a && \
     ln -s /usr/lib/x86_64-linux-gnu/libcrypto.a && \
     cd /tmp/build/rpki-client && \
-    ./configure && make && make install
+    ./configure \
+        CPPFLAGS="`pkg-config --cflags openssl`" \
+        LDFLAGS="`pkg-config --libs-only-L openssl`" \
+        LDADD="`pkg-config --libs-only-l openssl` -lresolv" && \
+    make && \
+    make install
 
 # Cleanup
 RUN rm -Rf /tmp/build && \
