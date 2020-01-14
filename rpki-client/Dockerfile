@@ -25,6 +25,7 @@ RUN curl -fsSLo- https://github.com/kristapsdz/rpki-client/${RPKICLIENT_VER} | t
     ln -s /usr/lib/x86_64-linux-gnu/libssl.a && \
     ln -s /usr/lib/x86_64-linux-gnu/libcrypto.a && \
     cd /tmp/build/rpki-client && \
+    sed -i -e 's/^PRIVDROP\s\+=.\+/PRIVDROP = nobody/' Makefile && \
     ./configure \
         CPPFLAGS="`pkg-config --cflags openssl`" \
         LDFLAGS="`pkg-config --libs-only-L openssl`" \
@@ -43,7 +44,8 @@ RUN rm -Rf /tmp/build && \
     apt-get clean
 
 # Create required directories
-RUN mkdir -p /tals /var/cache/rpki-client
+RUN mkdir -p /tals /var/cache/rpki-client && \
+    chown nobody. /tals /var/cache/rpki-client
 
 # Download the freely available TAL files (excludes ARIN).
 ADD https://raw.githubusercontent.com/kristapsdz/rpki-client/master/tals/afrinic.tal /tals/
@@ -53,7 +55,7 @@ ADD https://raw.githubusercontent.com/kristapsdz/rpki-client/master/tals/ripe.ta
 
 # Install our entrypoint helper script
 COPY entrypoint.sh /opt/
-RUN chmod +x /opt/entrypoint.sh
+RUN chmod a+x /opt/entrypoint.sh
 
 # Run rpki-client via Tini to ensure signals to PID 1 are respected
 ENTRYPOINT ["/tini", "-g", "--", "/opt/entrypoint.sh"]
