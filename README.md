@@ -6,20 +6,21 @@ I created these images to reduce deployment time in the cloud to experiment with
 
 Each definition is accompanied by a deployed copy of the image on Docker Hub:
 
-| RP Tool | Dockerfile Repo | Docker Hub Image | Image Vendor |
-| ------- | --------------- | ---------------- | ------------ |
-| [FORT Validator](https://fortproject.net/validator) | [`fortvalidator/`](fortvalidator) | [ximoneighteen/fortvalidator](https://hub.docker.com/r/ximoneighteen/fortvalidator) | Me |
-| [Rcynic](https://github.com/dragonresearch/rpki.net/tree/master/rp/rcynic) | [`rcynic/`](rcynic) | [ximoneighteen/rcynic](https://hub.docker.com/r/ximoneighteen/rcynic) | Me |
-| [rpki-client](https://medium.com/@jobsnijders/a-proposal-for-a-new-rpki-validator-openbsd-rpki-client-1-15b74e7a3f65) | [`rpki-client/`](rpki-client) | [ximoneighteen/rpki-client](https://hub.docker.com/r/ximoneighteen/rpki-client) | Me |
+| RP Tool | Dockerfile Repo | Docker Hub Image | Image Vendor | Notes |
+| ------- | --------------- | ---------------- | ------------ | -----
+| [FORT Validator](https://fortproject.net/validator) | [`fortvalidator/`](fortvalidator) | [ximoneighteen/fortvalidator](https://hub.docker.com/r/ximoneighteen/fortvalidator) | Me | |
+| [Rcynic](https://github.com/dragonresearch/rpki.net/tree/master/rp/rcynic) | [`rcynic/`](rcynic) | [ximoneighteen/rcynic](https://hub.docker.com/r/ximoneighteen/rcynic) | Me | |
+| [rpki-client](https://medium.com/@jobsnijders/a-proposal-for-a-new-rpki-validator-openbsd-rpki-client-1-15b74e7a3f65) | [`rpki-client/`](rpki-client) | [ximoneighteen/rpki-client](https://hub.docker.com/r/ximoneighteen/rpki-client) | Me | |
+| [rpkivalidator3](https://github.com/RIPE-NCC/rpki-validator-3/wiki) | [`rpkivalidator3/`](rpkivalidator3) | [ximoneighteen/rpkivalidator3](https://hub.docker.com/r/ximoneighteen/rpkivalidator3) | Me | Includes `rpki-rtr-server` |
 
 Additionally, the table below lists other official RP images that I am aware of:
 
-| RP Tool | Dockerfile Repo | Docker Hub Image | Image Vendor |
-| ------- | --------------- | ---------------- | ------------ |
-| [OctoRPKI](https://blog.cloudflare.com/cloudflares-rpki-toolkit/) | [CloudFlare @ GitHub](https://github.com/cloudflare/cfrpki#octorpki) | [cloudflare/octorpki](https://hub.docker.com/r/cloudflare/octorpki) | CloudFlare |
-| [Routinator](https://nlnetlabs.nl/projects/rpki/routinator/) | [NLnet Labs @ GitHub](https://github.com/NLnetLabs/routinator) | [nlnetlabs/routinator](https://hub.docker.com/r/nlnetlabs/routinator) | NLnet Labs |
-| [RPKI Validator 3](https://www.ripe.net/manage-ips-and-asns/resource-management/certification/tools-and-resources) | [RIPE NCC @ GitHub](https://github.com/RIPE-NCC/rpki-validator) | [ripencc/rpki-validator-3-docker](https://hub.docker.com/r/ripencc/rpki-validator-3-docker) | RIPE NCC |
-| [FORT Validator](https://fortproject.net/validator) | [pcarana @ GitHub](https://github.com/pcarana/docker-images/tree/master/FORT-validator) | N/A | [FORT issue #17](https://github.com/NICMx/FORT-validator/issues/17) |
+| RP Tool | Dockerfile Repo | Docker Hub Image | Image Vendor | Notes |
+| ------- | --------------- | ---------------- | ------------ | ----- |
+| [OctoRPKI](https://blog.cloudflare.com/cloudflares-rpki-toolkit/) | [CloudFlare @ GitHub](https://github.com/cloudflare/cfrpki#octorpki) | [cloudflare/octorpki](https://hub.docker.com/r/cloudflare/octorpki) | CloudFlare | |
+| [Routinator](https://nlnetlabs.nl/projects/rpki/routinator/) | [NLnet Labs @ GitHub](https://github.com/NLnetLabs/routinator) | [nlnetlabs/routinator](https://hub.docker.com/r/nlnetlabs/routinator) | NLnet Labs | |
+| [RPKI Validator 3](https://www.ripe.net/manage-ips-and-asns/resource-management/certification/tools-and-resources) | [RIPE NCC @ GitHub](https://github.com/RIPE-NCC/rpki-validator) | [ripencc/rpki-validator-3-docker](https://hub.docker.com/r/ripencc/rpki-validator-3-docker) | RIPE NCC | Lacks `rpki-rtr-server` | |
+| [FORT Validator](https://fortproject.net/validator) | [pcarana @ GitHub](https://github.com/pcarana/docker-images/tree/master/FORT-validator) | N/A | [FORT issue #17](https://github.com/NICMx/FORT-validator/issues/17) | |
 
 A more complete list of RPKI Relying Party Software is maintained by NLnet Labs on Read the Docs [here](https://rpki.readthedocs.io/en/latest/tools.html).
 
