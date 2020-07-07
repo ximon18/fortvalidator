@@ -20,7 +20,5 @@ nohup java -Dspring.config.location=file:/opt/rtrserver.properties -jar /opt/rpk
 tail -F -n 9999 nohup.out &
 
 my_log "Launching RIPE NCC RPKI Validator 3"
-cd ${DATA_DIR}
-sed -i -e 's/jvm.mem.maximum=.\+/jvm.mem.maximum=512m/g' $CONFIG_DIR/application-defaults.properties
 cd /var/lib/rpki-validator-3
 exec ./rpki-validator-3.sh
