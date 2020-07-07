@@ -1,5 +1,5 @@
 FROM alpine AS builder
-ARG VER=3.1-2020.01.13.09.31.26
+ARG VER=3.1-2020.07.06.14.28
 RUN apk add bash maven openjdk8
 WORKDIR /tmp/
 RUN wget https://github.com/RIPE-NCC/rpki-validator-3/archive/${VER}.tar.gz && \
