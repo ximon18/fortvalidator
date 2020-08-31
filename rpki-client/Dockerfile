@@ -1,5 +1,5 @@
-FROM ubuntu:18.04
-ARG RPKICLIENT_VER=archive/VERSION_0_3_0.tar.gz
+FROM debian:9
+ARG RPKICLIENT_VER=6.7p1
 ARG TINI_VER=0.18.0
 
 # Use tini to ensure fort can be CTRL-C stopped when running as a Docker container
@@ -9,27 +9,20 @@ RUN chmod +x /tini
 # Install supporting tools
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
+        autoconf \
         build-essential \
         curl \
+        git \
         libssl-dev \
-        libssl1.1 \
-        pkg-config \
+        libtool \
         rsync \
         wget
 
 # Install rpki-client
 WORKDIR /tmp/build/rpki-client
-RUN curl -fsSLo- https://github.com/kristapsdz/rpki-client/${RPKICLIENT_VER} | tar zx --strip-components 1 && \
-    mkdir /usr/local/lib/eopenssl && \
-    cd /usr/local/lib/eopenssl && \
-    ln -s /usr/lib/x86_64-linux-gnu/libssl.a && \
-    ln -s /usr/lib/x86_64-linux-gnu/libcrypto.a && \
-    cd /tmp/build/rpki-client && \
-    sed -i -e 's/^PRIVDROP\s\+=.\+/PRIVDROP = nobody/' Makefile && \
-    ./configure \
-        CPPFLAGS="`pkg-config --cflags openssl`" \
-        LDFLAGS="`pkg-config --libs-only-L openssl`" \
-        LDADD="`pkg-config --libs-only-l openssl` -lresolv" && \
+RUN curl -fsSLo- https://github.com/rpki-client/rpki-client-portable/archive/${RPKICLIENT_VER}.tar.gz | tar zx --strip-components 1 && \
+    ./autogen.sh && \
+    ./configure && \
     make && \
     make install
 
@@ -38,25 +31,22 @@ RUN rm -Rf /tmp/build && \
     apt-get purge -y --auto-remove \
         build-essential \
         curl \
-        libssl-dev \
-        pkg-config \
-        wget && \
+        libssl-dev && \
     apt-get clean
 
-# Create required directories
-RUN mkdir -p /tals /var/cache/rpki-client && \
-    chown nobody. /tals /var/cache/rpki-client
-
-# Download the freely available TAL files (excludes ARIN).
-ADD https://raw.githubusercontent.com/kristapsdz/rpki-client/master/tals/afrinic.tal /tals/
-ADD https://raw.githubusercontent.com/kristapsdz/rpki-client/master/tals/apnic.tal /tals/
-ADD https://raw.githubusercontent.com/kristapsdz/rpki-client/master/tals/lacnic.tal /tals/
-ADD https://raw.githubusercontent.com/kristapsdz/rpki-client/master/tals/ripe.tal /tals/
+# Create required user & directories
+RUN useradd _rpki-client
+RUN mkdir -p /tals /usr/local/var/cache/rpki-client && \
+    chown _rpki-client. /tals /usr/local/var/cache/rpki-client
 
 # Install our entrypoint helper script
 COPY entrypoint.sh /opt/
 RUN chmod a+x /opt/entrypoint.sh
 
+# Record the version of rpki-client as there doesn't appear to be any way to get it from rpki-client itself
+RUN echo ${RPKICLIENT_VER} > /opt/version.txt
+
 # Run rpki-client via Tini to ensure signals to PID 1 are respected
+USER _rpki-client
 ENTRYPOINT ["/tini", "-g", "--", "/opt/entrypoint.sh"]
 CMD ["-e", "/usr/bin/rsync", "/tals/*.tal"]
